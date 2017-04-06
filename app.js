@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var cors = require('cors');
 
 var config = require('./config/database');
 
@@ -12,6 +13,9 @@ var index = require('./routes/index');
 var userRoutes = require('./routes/users');
 
 var app = express();
+
+// allow cross origin acces
+app.use(cors());
 
 // connect to database
 mongoose.connect(config.database);
@@ -32,9 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', userRoutes);
 
-
-
-
+app.use(cor)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
