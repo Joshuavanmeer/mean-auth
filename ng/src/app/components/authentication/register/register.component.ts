@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
   selector: 'app-register',
@@ -19,15 +20,14 @@ export class RegisterComponent implements OnInit {
                 email: this.registerForm.value.email,
                 password: this.registerForm.value.password
             };
-            // this.authService.register(newUser).subscribe((res) => {
-            //     console.log(res);
-            // });
+            this.authenticationService.register(newUser);
         }
     }
 
 
     constructor (
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private authenticationService: AuthenticationService
     ) {}
 
 

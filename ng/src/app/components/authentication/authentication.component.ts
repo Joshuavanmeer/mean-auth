@@ -8,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class AuthenticationComponent implements OnInit {
 
 
-  constructor(
-  ) { }
 
-  ngOnInit() {
-  }
+
+    constructor(
+    ) { }
+
+    ngOnInit() {
+    }
 
 }
