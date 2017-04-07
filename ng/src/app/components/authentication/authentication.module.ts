@@ -16,7 +16,6 @@ import { AuthenticationRoutingModule } from "./authentication.routing.module";
     ],
     imports: [
         CommonModule,
-        FormsModule,
         ReactiveFormsModule,
         AuthenticationRoutingModule
     ],

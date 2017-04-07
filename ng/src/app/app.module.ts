@@ -8,6 +8,10 @@ import { AuthenticationModule } from "./components/authentication/authentication
 import { AppRoutingModule } from "./app.routing.module";
 import { HomeModule } from "./components/home/home.module";
 
+// global services
+import { AuthenticationService } from "./components/authentication/authentication.service";
+import { HttpService } from "./components/services/http.service";
+
 @NgModule({
     declarations: [
         AppComponent
@@ -20,7 +24,10 @@ import { HomeModule } from "./components/home/home.module";
         AuthenticationModule,
         AppRoutingModule
     ],
-    providers: [],
+    providers: [
+        AuthenticationService,
+        HttpService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
