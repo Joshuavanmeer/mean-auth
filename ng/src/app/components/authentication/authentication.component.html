@@ -2,7 +2,7 @@
   authentication works!
 </p>
 <ul>
-    <li><a (click)="login()">Login</a></li>
-    <li><a (click)="register()">Register</a></li>
+    <li><a [routerLink]="['login']" routerLinkActive="active">Login</a></li>
+    <li><a [routerLink]="['register']" routerLinkActive="active">Register</a></li>
 </ul>
 <router-outlet></router-outlet>
