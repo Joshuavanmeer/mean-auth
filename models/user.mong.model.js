@@ -14,11 +14,6 @@ schema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('user', schema);
 
-module.exports.addNewUser = function (newUser, cbfn) {
-    newUser.save(cbfn);
-};
-
-
 
 
 
