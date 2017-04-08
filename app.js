@@ -12,6 +12,7 @@ var config = require('./config/database');
 var index = require('./routes/index');
 var authRoutes = require('./routes/auth');
 var userRoutes = require('./routes/users');
+var dashboardRoutes = require('./routes/dashboard');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
+app.use('/dashboard', dashboardRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
