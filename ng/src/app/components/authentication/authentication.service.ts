@@ -16,7 +16,7 @@ export class AuthenticationService {
             userDetails.name,
             userDetails.username
         );
-        this.httpService.post(['http://localhost:3000/users'], newUser)
+        this.httpService.post(['http://localhost:3000/auth'], newUser)
             .subscribe(
                 res => {
                     console.log(res);
