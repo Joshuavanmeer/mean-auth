@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 var User = require('../models/user.mong.model');
+var config = require('../config/database');
+var jwt = require('jsonwebtoken');
 
 router.get('/', function(req, res, next) {
 });
@@ -51,11 +53,21 @@ router.post('/login', function (req, res, next) {
                 message: 'User credentials are invalid'
             });
         }
-        res.status(200).json({
-            message: 'succesfully logged in'
+        var jsonToken = jwt.sign({ user: userDoc }, config.secret, { expiresIn: 7200 } );
+        return res.status(200).json({
+            message: 'Signin succesful',
+            token: jsonToken,
+            user: {
+                name: userDoc.name,
+                username: userDoc.username,
+                email: userDoc.email,
+                userId: userDoc._id
+            }
         });
     });
 });
+
+
 
 
 module.exports = router;

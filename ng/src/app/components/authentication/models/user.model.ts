@@ -2,10 +2,10 @@ export class User {
 
     constructor (
 
-        private email: string,
-        private password: string,
-        private name?: string,
-        private username?: string
+        public email: string,
+        public password: string,
+        public name?: string,
+        public username?: string
 
     ) {}
 
@@ -19,3 +19,5 @@ export class User {
     }
 
 }
+
+

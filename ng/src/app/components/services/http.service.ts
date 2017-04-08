@@ -19,7 +19,7 @@ export class HttpService {
 
 
     post(urlPieces: string[], body, headers?): Observable<any> {
-        const url = this.parseUrl(urlPieces);
+        const url = urlPieces.length > 0 ? this.parseUrl(urlPieces) : urlPieces[0];
         return this.http.post(url, body, headers || this.headers)
             .map(res => res.json())
             .catch((err) => Observable.throw(err.json()));

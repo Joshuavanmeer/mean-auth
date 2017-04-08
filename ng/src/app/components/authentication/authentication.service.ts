@@ -9,13 +9,13 @@ export class AuthenticationService {
     user: any;
 
 
-    register(userDetails: any): void {
-        const newUser = new User(
-            userDetails.email,
-            userDetails.password,
-            userDetails.name,
-            userDetails.username
-        );
+    register(userDetails: any) {
+        const newUser = {
+            name: userDetails.name,
+            username: userDetails.username,
+            email: userDetails.email,
+            password: userDetails.password
+        };
         this.httpService.post(['http://localhost:3000/auth/register'], newUser)
             .subscribe(
                 res => {
@@ -25,6 +25,30 @@ export class AuthenticationService {
                     console.log(err);
                 }
             );
+    }
+
+
+    login(userCredentials: any) {
+        this.httpService.post(['http://localhost:3000/auth/login'], userCredentials)
+            .subscribe(res => {
+                localStorage.setItem('jwt', res.token);
+                localStorage.setItem('user', JSON.stringify(res.user));
+                localStorage.setItem('userId', res.user.userId);
+                this.user = new User(
+                    userCredentials.email,
+                    null,
+                    res.user.name,
+                    res.user.username
+                );
+            },
+            err => {
+                console.log(err);
+            });
+    }
+
+
+    setLocalStorage(string) {
+
     }
 
     constructor(

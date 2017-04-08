@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
-import {AuthenticationService} from "../authentication.service";
+import { AuthenticationService } from "../authentication.service";
 
 @Component({
   selector: 'app-register',
@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
                 email: this.registerForm.value.email,
                 password: this.registerForm.value.password
             };
-            this.authenticationService.register(newUser);
+            this.authenticationService.register(newUser)
         }
     }
 
