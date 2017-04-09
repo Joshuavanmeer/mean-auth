@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HomeModule } from "./components/home/home.module";
 import { AuthenticationModule } from "./components/authentication/authentication.module";
-import { DashboardModule } from "./components/dashboard/dashboard/dashboard.module";
+import { DashboardModule } from "./components/dashboard/dashboard.module";
 import { AppRoutingModule } from "./app.routing.module";
 
 // global services

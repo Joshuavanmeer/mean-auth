@@ -40,12 +40,18 @@ export class AuthenticationService {
                     res.user.name,
                     res.user.username
                 );
+                this.authToken = res.token;
             },
             err => {
                 console.log(err);
             });
     }
 
+
+    isLoggedIn(): boolean {
+        if (localStorage.getItem('jwt')) { return true; }
+        return false;
+    }
 
 
     constructor(

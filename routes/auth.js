@@ -5,8 +5,6 @@ var User = require('../models/user.mong.model');
 var config = require('../config/database');
 var jwt = require('jsonwebtoken');
 
-router.get('/', function(req, res, next) {
-});
 
 
 router.post('/register', function (req, res, next) {
