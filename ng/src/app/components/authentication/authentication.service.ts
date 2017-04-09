@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from "./models/user.model";
 import { HttpService } from "../services/http.service";
+import {NotificationsService} from "../notifications/notifications.service";
 
 @Injectable()
 export class AuthenticationService {
@@ -41,6 +42,11 @@ export class AuthenticationService {
                     res.user.username
                 );
                 this.authToken = res.token;
+                this.notificationsService.showFlashMessage({
+                    message: 'hoi soe message',
+                    type: 'no error jow',
+                    duration: 2000
+                });
             },
             err => {
                 console.log(err);
@@ -55,7 +61,8 @@ export class AuthenticationService {
 
 
     constructor(
-        private httpService: HttpService
+        private httpService: HttpService,
+        private notificationsService: NotificationsService
     ) { }
 
 }
