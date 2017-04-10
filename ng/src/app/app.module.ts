@@ -9,18 +9,18 @@ import { AuthenticationModule } from "./components/authentication/authentication
 import { DashboardModule } from "./components/dashboard/dashboard.module";
 import { AppRoutingModule } from "./app.routing.module";
 // components
-import { NotificationsComponent } from "./components/notifications/notifications.component";
-import { FlashMessagesComponent } from "./components/notifications/flash-messages/flash-messages.component";
+import { NotificationComponent } from "./components/notifications/notification.component";
+import { FlashMessageComponent } from "./components/notifications/flash-message/flash-message.component";
 // global services
 import { AuthenticationService } from "./components/authentication/authentication.service";
 import { HttpService } from "./components/services/http.service";
-import { NotificationsService } from "./components/notifications/notifications.service";
+import { NotificationService } from "./components/notifications/notification.service";
 
 @NgModule({
     declarations: [
         AppComponent,
-        NotificationsComponent,
-        FlashMessagesComponent
+        NotificationComponent,
+        FlashMessageComponent
     ],
     imports: [
         BrowserModule,
@@ -33,7 +33,7 @@ import { NotificationsService } from "./components/notifications/notifications.s
     ],
     providers: [
         AuthenticationService,
-        NotificationsService,
+        NotificationService,
         HttpService
     ],
     bootstrap: [AppComponent]

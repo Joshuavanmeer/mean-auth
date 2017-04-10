@@ -1,12 +1,12 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import { NotificationsService } from "./notifications.service";
+import { NotificationService } from "./notification.service";
 
 @Component({
-  selector: 'app-notifications',
-  templateUrl: 'notifications.component.html',
-  styleUrls: ['notifications.component.css']
+    selector: 'app-notification',
+    templateUrl: 'notification.component.html',
+    styleUrls: ['notification.component.css']
 })
-export class NotificationsComponent implements OnInit, OnDestroy {
+export class NotificationComponent implements OnInit, OnDestroy {
 
     private showFlashMessage: boolean = false;
     flashMessageConfig: any;
@@ -14,7 +14,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     private flashMessageSub;
 
     constructor(
-        private notificationsService: NotificationsService
+        private notificationService: NotificationService
     ) { }
 
 
@@ -22,7 +22,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
 
-        this.flashMessageSub = this.notificationsService.flashMessageDispenser
+        this.flashMessageSub = this.notificationService.flashMessageDispenser$
             .subscribe(res => {
                 this.showFlashMessage = true;
                 setTimeout(() => {
@@ -33,6 +33,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
                     type: res.type
                 }
             });
+
     }
 
     ngOnDestroy() {

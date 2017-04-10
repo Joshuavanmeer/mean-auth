@@ -16,12 +16,18 @@ router.post('/register', function (req, res, next) {
     });
     newUser.save(newUser, function (err, result) {
         if (err) {
+            var errorMessage = '';
+            if (err.errors.email.kind === 'not unique') {
+                errorMessage = 'it seems this email is already in use'
+            }
             return res.status(500).json({
+                type: 'error',
                 error: err,
-                message: 'failed to make a new user, please try again later'
+                message: errorMessage
             });
         }
         res.status(201).json({
+            type: 'success',
             result: result,
             message: 'succesfully created a new account'
         });
@@ -39,21 +45,18 @@ router.post('/login', function (req, res, next) {
                 error: err
             });
         }
-        if (!userDoc) {
+        // if no user found with these credentials or credentials are invalid
+        if (!userDoc || !bcrypt.compareSync(req.body.password, userDoc.password)) {
             return res.status(401).json({
                 message: 'user credentials are invalid',
+                type: 'error',
                 error: err
-            });
-        }
-        if (!bcrypt.compareSync(req.body.password, userDoc.password)) {
-            return res.status(401).json({
-                error: err,
-                message: 'User credentials are invalid'
             });
         }
         var jsonToken = jwt.sign({ user: userDoc }, config.secret, { expiresIn: 7200 } );
         return res.status(200).json({
-            message: 'Signin succesful',
+            message: 'You were logged in succesfully',
+            type: 'success',
             token: jsonToken,
             user: {
                 name: userDoc.name,
