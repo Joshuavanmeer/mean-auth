@@ -4,12 +4,18 @@ import { HttpService } from "../services/http.service";
 import { NotificationService } from "../notifications/notification.service";
 import { Router } from "@angular/router";
 import { FlashMessage } from "../notifications/models/flashmessage.model";
+import { BehaviorSubject } from "rxjs";
+import 'rxjs/Rx';
 
 @Injectable()
 export class AuthenticationService {
 
     authToken: string;
     user: any;
+    // streams
+    private isLoggedInSource: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    // end points
+    isLoggedIn$ = this.isLoggedInSource.asObservable();
 
 
     constructor(
@@ -17,6 +23,18 @@ export class AuthenticationService {
         private httpService: HttpService,
         private notificationService: NotificationService
     ) { }
+
+
+    checkAuthenticationState() {
+        if (localStorage.getItem('jwt')) {
+            this.isLoggedInSource.next(true);
+        }
+    }
+
+
+    updateAuthenticationState(state: boolean) {
+        this.isLoggedInSource.next(state);
+    }
 
 
     register(userDetails: any) {
@@ -72,6 +90,7 @@ export class AuthenticationService {
                             5000
                         )
                     );
+                    this.updateAuthenticationState(true);
                     this.router.navigate(['/dashboard']);
             },
                 err => {
@@ -83,6 +102,21 @@ export class AuthenticationService {
                         )
                     );
             });
+    }
+
+
+    logout() {
+        this.isLoggedInSource.next(false);
+        localStorage.clear();
+        this.user = null;
+        this.notificationService.showFlashMessage(
+            new FlashMessage(
+                'success',
+                'You have been logged out',
+                5000
+            )
+        );
+        this.router.navigate(['/']);
     }
 
 
