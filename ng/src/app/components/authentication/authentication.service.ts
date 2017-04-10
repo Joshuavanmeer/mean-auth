@@ -12,6 +12,7 @@ export class AuthenticationService {
 
     authToken: string;
     user: any;
+
     // streams
     private isLoggedInSource: BehaviorSubject<boolean> = new BehaviorSubject(false);
     // end points
@@ -25,6 +26,8 @@ export class AuthenticationService {
     ) { }
 
 
+    // check is user has a jsonwebtoken
+    // stored in localstorage
     checkAuthenticationState() {
         if (localStorage.getItem('jwt')) {
             this.isLoggedInSource.next(true);
@@ -32,6 +35,7 @@ export class AuthenticationService {
     }
 
 
+    // sets authorization state
     updateAuthenticationState(state: boolean) {
         this.isLoggedInSource.next(state);
     }

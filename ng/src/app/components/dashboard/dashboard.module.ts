@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { DashboardComponent } from "./dashboard.component";
 import { DashboardRoutingModule } from "./dashboard.routing.module";
 import { AccountComponent } from './account/account.component';
+import { DashboardGuardService } from "./dashboard-guard.service";
 
 
 @NgModule({
@@ -14,7 +15,9 @@ import { AccountComponent } from './account/account.component';
         DashboardComponent,
         AccountComponent
     ],
-    providers: []
+    providers: [
+        DashboardGuardService
+    ]
 })
 
 export class DashboardModule {}

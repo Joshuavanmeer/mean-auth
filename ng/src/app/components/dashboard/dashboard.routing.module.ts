@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from "./account/account.component";
 import { AuthenticationGuardService } from "../authentication/authentication-guard.service";
 import { DashboardComponent } from "./dashboard.component";
+import { DashboardGuardService } from "./dashboard-guard.service";
 
 const dashboardRoutes: Routes = [{
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthenticationGuardService],
+    canActivate: [DashboardGuardService],
     children: [
         {
             path: '',
